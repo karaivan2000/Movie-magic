@@ -1,4 +1,5 @@
 const movies = [{
+    _id: `1`,
     title: 'Home Alone',
     genre: '23ew',
     director: 'Ivam',
@@ -13,6 +14,6 @@ exports.getAll = () => {
 }
 
 exports.create = (movieData) => {
-    console.log(movieData);
+    movieData._id= movies[movies.length - 1]._id + 1;
     movies.push(movieData);
 }
