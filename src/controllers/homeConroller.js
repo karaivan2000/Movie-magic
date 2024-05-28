@@ -2,10 +2,10 @@ const router = require(`express`).Router();
 
 const movieService = require(`../services/movieservices`);
 
-router.get(`/`, (req,res) => {
+router.get(`/`, (req, res) => {
     const movies = movieService.getAll();
 
-    res.render(`home`, {movies});
+    res.render(`home`, { movies });
 });
 
 router.get(`/about`, (req, res) => {
@@ -13,8 +13,10 @@ router.get(`/about`, (req, res) => {
 });
 
 router.get(`/search`, (req, res) => {
-    const movies = movieService.getAll();
-    res.render(`search`, {movies});
+    const { title, genre, year } = req.query;
+    const moviesResult = movieService.search(title, genre, year);
+
+    res.render(`search`, { moviesResult });
 });
 
 router.get(`/404`, (req, res) => {
